@@ -384,7 +384,7 @@ odbc_server: {{ env['EJABBERD_ODBC_SERVER'] }}
 odbc_database: {{ env['EJABBERD_ODBC_DATABASE'] }}
 odbc_username: {{ env['EJABBERD_ODBC_USERNAME'] }}
 odbc_password: {{ env['EJABBERD_ODBC_PASSWORD'] }}
-odbc_pool_size: {{ env['EJABBERD_ODBC_POOL_SIZE'] }}
+odbc_pool_size: {{ env['EJABBERD_ODBC_POOL_SIZE'] or 5 }}
 {% endif %}
 
 {%- if env['EJABBERD_DEFAULT_DB'] is defined %}
