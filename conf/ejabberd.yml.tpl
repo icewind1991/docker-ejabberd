@@ -345,35 +345,6 @@ modules:
       - "flat"
       - "hometree"
       - "pep" # pep requires mod_caps
-  mod_register:
-    ##
-    ## Protect In-Band account registrations with CAPTCHA.
-    ##
-    ## captcha_protected: true
-
-    ##
-    ## Set the minimum informational entropy for passwords.
-    ##
-    ## password_strength: 32
-
-    ##
-    ## After successful registration, the user receives
-    ## a message with this subject and body.
-    ##
-    welcome_message:
-      subject: "Welcome!"
-      body: |-
-        Hi.
-        Welcome to this XMPP server.
-
-    ##
-    ## Only clients in the server machine can register accounts
-    ##
-    {%- if env['EJABBERD_REGISTER_TRUSTED_NETWORK_ONLY'] == "true" %}
-    ip_access: trusted_network
-    {% endif %}
-
-    access: register
   mod_roster: {}
   mod_shared_roster: {}
   mod_stats: {}
