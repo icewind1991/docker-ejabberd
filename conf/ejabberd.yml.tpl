@@ -362,6 +362,10 @@ modules:
     {% endif %}
   mod_http_upload_quota:
     max_days: 10
+  {%- if env['EJABBERD_CONFIGURE_ODBC'] == "true" %}
+  mod_mam:
+    db_type: odbc
+  {% endif %}
 
 ###   ============
 ###   HOST CONFIG
