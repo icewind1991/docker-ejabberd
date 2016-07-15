@@ -370,7 +370,7 @@ modules:
     max_days: 10
   {%- if env['EJABBERD_CONFIGURE_SQL'] == "true" %}
   mod_mam:
-    db_type: odbc
+    db_type: sql
     default: always
   {% endif %}
 
