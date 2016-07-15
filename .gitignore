@@ -50,3 +50,4 @@ Session.vim
 
 ### PyCharm ###
 .idea/
+docker-compose.yml

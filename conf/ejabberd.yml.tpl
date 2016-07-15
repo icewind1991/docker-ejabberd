@@ -325,8 +325,13 @@ modules:
   {% endif %}
   ## mod_muc_log: {}
   ## mod_multicast: {}
+  {%- if env['EJABBERD_CONFIGURE_ODBC'] == "true" %}
+  mod_offline_odbc:
+    access_max_user_messages: max_user_offline_messages
+  {% else %}
   mod_offline:
     access_max_user_messages: max_user_offline_messages
+  {% endif %}
   mod_ping: {}
   ## mod_pres_counter:
   ##   count: 5
