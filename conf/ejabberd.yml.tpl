@@ -325,10 +325,11 @@ modules:
   {% endif %}
   ## mod_muc_log: {}
   ## mod_multicast: {}
-  {%- if env['EJABBERD_CONFIGURE_ODBC'] == "true" %}
-  mod_offline_odbc:
+  mod_offline:
     access_max_user_messages: max_user_offline_messages
-  {% else %}
+    {%- if env['EJABBERD_CONFIGURE_SQL'] == "true" %}
+    db_type: sql
+    {% else %}
   mod_offline:
     access_max_user_messages: max_user_offline_messages
   {% endif %}
@@ -367,9 +368,10 @@ modules:
     {% endif %}
   mod_http_upload_quota:
     max_days: 10
-  {%- if env['EJABBERD_CONFIGURE_ODBC'] == "true" %}
+  {%- if env['EJABBERD_CONFIGURE_SQL'] == "true" %}
   mod_mam:
     db_type: odbc
+    default: always
   {% endif %}
 
 ###   ============
@@ -381,15 +383,15 @@ host_config:
     domain_certfile: "/opt/ejabberd/ssl/{{ xmpp_domain }}.pem"
 {%- endfor %}
 
-{%- if env['EJABBERD_CONFIGURE_ODBC'] == "true" %}
+{%- if env['EJABBERD_CONFIGURE_SQL'] == "true" %}
 ###   ====================
-###   ODBC DATABASE CONFIG
-odbc_type: {{ env['EJABBERD_ODBC_TYPE'] }}
-odbc_server: {{ env['EJABBERD_ODBC_SERVER'] }}
-odbc_database: {{ env['EJABBERD_ODBC_DATABASE'] }}
-odbc_username: {{ env['EJABBERD_ODBC_USERNAME'] }}
-odbc_password: {{ env['EJABBERD_ODBC_PASSWORD'] }}
-odbc_pool_size: {{ env['EJABBERD_ODBC_POOL_SIZE'] or 5 }}
+###   SQL DATABASE CONFIG
+sql_type: {{ env['EJABBERD_SQL_TYPE'] }}
+sql_server: "{{ env['EJABBERD_SQL_SERVER'] }}"
+sql_database: "{{ env['EJABBERD_SQL_DATABASE'] }}"
+sql_username: "{{ env['EJABBERD_SQL_USERNAME'] }}"
+sql_password: "{{ env['EJABBERD_SQL_PASSWORD'] }}"
+sql_pool_size: {{ env['EJABBERD_SQL_POOL_SIZE'] or 5 }}
 {% endif %}
 
 {%- if env['EJABBERD_DEFAULT_DB'] is defined %}
