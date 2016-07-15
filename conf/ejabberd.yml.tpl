@@ -351,7 +351,9 @@ modules:
       - "flat"
       - "hometree"
       - "pep" # pep requires mod_caps
-  mod_roster: {}
+  mod_roster:
+    versioning: true
+    store_current_id: true   
   mod_shared_roster: {}
   mod_stats: {}
   mod_time: {}
